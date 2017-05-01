@@ -1,0 +1,66 @@
+#!/bin/bash
+
+function usage() {
+	echo "usage: yt [action] "
+	echo ""
+	echo "Available actions :"
+	echo ""
+	echo "name             usage                      description"
+	echo "---------------  -------------------------  ---------------------------------"
+	echo "search           yt search <terms>          search YouTube for <terms>"
+	echo "channel          yt channel [channel-id]    open YouTube channel"
+
+}
+
+function openURL() {
+	/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --enable-speech-input $url
+}
+
+function openYt() {
+	url=www.youtube.com
+	openURL
+	exit 0
+}
+
+function ytSearch() {
+	echo "Searching youtube for '$query'"
+	query="$(echo $query | sed -e "s/ /\+/g" )"
+	url="www.youtube.com/results?search_query=$query"
+	openURL
+	exit 0
+}
+
+function ytChannel() {
+	query="$(echo $query | sed -e "s/ /\+/g" )"
+	url="www.youtube.com/user/$query"
+	openURL
+	exit 0
+}
+
+while [ ! -z $"$1" ]; do
+	case $1 in 
+		"") 			openYt
+						;;
+		search)			shift
+						query=""
+						while [ ! -z $"$1" ]; do
+							query="$query $1"
+							shift
+						done
+						ytSearch
+						;;
+		channel | user)	shift
+						query=""
+						while [ ! -z $"$1" ]; do
+							query="$query $1"
+							shift
+						done
+						ytChannel
+						;;
+		help)			usage
+						;;
+		*)				usage
+						;;
+	esac
+shift
+done
