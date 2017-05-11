@@ -5,10 +5,10 @@ function usage() {
 	echo ""
 	echo "Available actions :"
 	echo ""
-	echo "name             usage                      description"
-	echo "---------------  -------------------------  ---------------------------------"
-	echo "search           yt search <terms>          search YouTube for <terms>"
-	echo "channel          yt channel [channel-id]    open YouTube channel"
+	echo "name     usage                    description"
+	echo "-------  -----------------------  --------------------------"
+	echo "search   yt search <terms>        search YouTube for <terms>"
+	echo "channel  yt channel [channel-id]  open YouTube channel"
 
 }
 
