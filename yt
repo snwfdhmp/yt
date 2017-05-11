@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#created by snwfdhmp
+
 function usage() {
 	echo "usage: yt [action] "
 	echo ""
